@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import Fuse from 'fuse.js';
 
 import characters from './characters.json';
 
 function App() {
+  console.log('Fuse', Fuse)
   return (
     <>
 
