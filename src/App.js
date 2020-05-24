@@ -5,7 +5,18 @@ import Fuse from 'fuse.js';
 import characters from './characters.json';
 
 function App() {
-  console.log('Fuse', Fuse)
+  const fuse = new Fuse(characters, {
+    keys: [
+      'name',
+      'company',
+      'species'
+    ],
+    includeScore: true
+  });
+
+  const results = fuse.search('bender');
+  const characterResults = results.map(character => character.item);
+
   return (
     <>
 
@@ -17,7 +28,7 @@ function App() {
 
       <main className="container">
         <ul className="characters">
-          {characters.map(character => {
+          {characterResults.map(character => {
             const { name, company, species, thumb } = character;
             return (
               <li key={name} className="character">
